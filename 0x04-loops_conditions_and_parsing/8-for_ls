@@ -1,11 +1,17 @@
 #!/usr/bin/env bash
 # The content of the current directory
 
-for file in *;
+for item  in *;
 do
-	if [[ -f $file && $file != .* && $file == *-* ]];
+	if [[ -e $item && $item != .* ]];
 	then
-		part_after=$(echo "$file" | cut -d'-' -f2-)
-		echo "$part_after"
+		if [[ -f "$item" && $item == *-* ]];
+		then
+			part_after=$(echo "$item" | cut -d'-' -f2-)
+			echo "$part_after"
+		elif [[ -d "$item" ]];
+		then
+			echo "$item"
+		fi
 	fi
 done
