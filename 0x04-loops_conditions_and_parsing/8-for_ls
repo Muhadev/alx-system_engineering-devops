@@ -3,15 +3,7 @@
 
 for item  in *;
 do
-	if [[ -e $item && $item != .* ]];
-	then
-		if [[ -f "$item" && $item == *-* ]];
-		then
-			part_after=$(echo "$item" | cut -d'-' -f2-)
-			echo "$part_after"
-		elif [[ -d "$item" ]];
-		then
-			echo "$item"
-		fi
-	fi
+	part_after=$(echo "$item" | cut -d'-' -f2-)
+	echo "$part_after"
+	
 done
