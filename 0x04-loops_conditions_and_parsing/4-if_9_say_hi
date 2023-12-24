@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# Set initial count to 0
+count=0
+
+# Execute a loop 10 times using a while loop
+while [ $count -lt 10 ];
+do
+	# Check if the current count is the 9th iteration
+	if [ $count -eq 8 ];
+	then
+		echo "Best School"
+		echo "Hi"
+	else
+		echo "Best School"
+	fi
+	((count++))
+done	
