@@ -3,8 +3,9 @@
 
 for file in *;
 do
-	if [[ -f $file && $file != .* && $file =~ - ]];
+	if [[ -f $file && $file != .* && $file == *-* ]];
 	then
-		echo "$file" | cut -d'-' -f2-
+		part_after=$(echo "$file" | cut -d'-' -f2-)
+		echo "$part_after"
 	fi
 done
