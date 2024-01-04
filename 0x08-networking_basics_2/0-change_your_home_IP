@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Backup the hosts file
+
+cp /etc/hosts ~/hosts.new
+sed -i 's/localhost$/127.0.0.2\n8.8.8.8\tfacebook.com/' ~/hosts.new
+cp -f ~/hosts.new /etc/hosts
