@@ -1,3 +1,5 @@
+# Puppet Manifest for creating a file in /tmp/school
+# Configures file permissions, owner, and group.
 file { '/tmp/school':
   ensure  => 'file',
   mode    => '0744',
