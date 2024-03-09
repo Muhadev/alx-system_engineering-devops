@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-# Define the key file names
-# Generate the RSA key pair with a passphrase
-ssh-keygen -t rsa -b 4096 -P betty -f school
