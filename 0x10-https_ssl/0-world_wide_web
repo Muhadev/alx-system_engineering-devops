@@ -1,27 +1,16 @@
-#!/bin/bash
+#!/usr/bin/env bash
+# print domains and subdomains
 
-# Function to display information for a subdomain
-display_info() {
-    local sub_domain=$1
-    local record_type=$(dig +short $sub_domain | awk '{print $4}')
-    local destination=$(dig +short $sub_domain)
-
-    echo "The subdomain $sub_domain is a $record_type record and points to $destination"
+print_domain_subdomain () {
+    dig "$1" | grep -A1 'ANSWER SECTION:' | sed -r "s/$1./$2/g" | awk -F" " ' NR==2 { print "The subdomain " $1 " is a " $4 " record and points to " $5 }'
 }
 
-# Main script logic
-if [ $# -lt 1 ]; then
-    echo "Usage: $0 <domain> [subdomain]"
-    exit 1
-fi
-
-domain=$1
-subdomain=${2:-"www lb-01 web-01 web-02"}
-
-if [ -n "$subdomain" ]; then
-    display_info $subdomain
+if [ "$#" -eq 2 ]
+then
+    print_domain_subdomain "$2.$1" "$2"
 else
-    for sub in $subdomain; do
-        display_info $sub
-    done
+    print_domain_subdomain "www.$1" "www"
+    print_domain_subdomain "lb-01.$1" "lb-01"
+    print_domain_subdomain "web-01.$1" "web-01"
+    print_domain_subdomain "web-02.$1" "web-02"
 fi
