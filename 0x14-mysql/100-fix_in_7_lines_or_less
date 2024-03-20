@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Fixes server bug
 chmod 644 /etc/nginx/nginx.conf
 sed -i 's/\s*#?\s*user .*/user nginx/' /etc/nginx/nginx.conf
 sed -i 's/listen \(.*\)80/listen\180/' /etc/nginx/sites-enabled/default
