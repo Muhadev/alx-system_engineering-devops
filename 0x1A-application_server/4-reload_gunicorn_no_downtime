@@ -1,0 +1,4 @@
+#!/usr/bin/env bask
+# Gunicorn reloads successfully.
+
+pgrep gunicorn | xargs kill -HUP
